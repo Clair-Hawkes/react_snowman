@@ -9,7 +9,10 @@ it('renders without crashing', function () {
   render(<Snowman />);
 });
 
-// TODO: SNapshot test
+it("matches snapshot", function () {
+  const { container } = render(<Snowman/>);
+  expect(container).toMatchSnapshot();
+});
 
 //******************************** FINAL GALLOWS IMAGE  *********/
 it('displays the final gallows image after guessing the max number of times', function () {
@@ -76,20 +79,5 @@ it('does not display the button area after guessing the max number of times and 
     ).toContainHTML('You Loser');
 });
 
-// TODO:
-/**
- * after 3 wrong guesses,
- * expect(querySelecotr(button_area)).not.toBeInDocument,
- * expect(querySelecotr(you lose msg)).toBeInDocument,
- *
- */
 
-
-//  const rightArrow = container.querySelector(".bi-arrow-right-circle");
-//  const leftArrow = container.querySelector(".bi-arrow-left-circle");
-//  // expect that the right arrow shows when you’re on the first image.
-//  expect(rightArrow.getAttribute('style')).toContain("visibility: visible;");
-//  // expect that the left arrow is missing when you’re on the first image.
-
-//  expect(leftArrow.getAttribute('style')).toContain("visibility: hidden;");
 

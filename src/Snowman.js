@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { randomWord, ENGLISH_WORDS} from "./words"
+
 import "./Snowman.css";
 import img0 from "./0.png";
 import img1 from "./1.png";
@@ -25,14 +27,14 @@ import img6 from "./6.png";
 
 function Snowman({
       images=[img0, img1, img2, img3, img4, img5, img6],
-      words=["apple"],
+      words=ENGLISH_WORDS,
       maxWrong=6,
     }) {
   /** by default, allow 6 guesses and use provided gallows images. */
 
   const [nWrong, setNWrong] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState(() => new Set());
-  const [answer, setAnswer] = useState(words[0]);
+  const [answer, setAnswer] = useState(() => randomWord(words));
 
 
   /** guessedWord: show current-state of word:
@@ -74,16 +76,9 @@ function Snowman({
     ));
   }
 
-  // TODO: Part One: Number of Wrong Guesses»
-  // Above the currently-guessed word,
-  //we’d like to show the number of wrong guesses,
-  //like “Number wrong: 3.” Add this.
-  // Adding a new ele tag <p/>
-  // Containing the number of wrongs guesses: nWrong
-  // Between the image and paragraph
+//TODO: Restart button:
+//Function restartGame that calls all state driven set functions?
 
-  //TODO: Update the Snowman Buttons to show/ not show
-  //TODO: Show the You lose message on maxWrong attempts
 
   return (
       <div className="Snowman">
@@ -96,6 +91,7 @@ function Snowman({
           nWrong < maxWrong ? generateButtons(): "You Loser"
           }
         </p>
+
       </div>
   );
 }
