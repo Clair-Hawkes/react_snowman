@@ -32,7 +32,8 @@ function Snowman({
 
   const [nWrong, setNWrong] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState(() => new Set());
-  const [answer, setAnswer] = useState((words)[0]);
+  const [answer, setAnswer] = useState(words[0]);
+
 
   /** guessedWord: show current-state of word:
    if guessed letters are {a,p,e}, show "app_e" for "apple"
@@ -73,11 +74,28 @@ function Snowman({
     ));
   }
 
+  // TODO: Part One: Number of Wrong Guesses»
+  // Above the currently-guessed word,
+  //we’d like to show the number of wrong guesses,
+  //like “Number wrong: 3.” Add this.
+  // Adding a new ele tag <p/>
+  // Containing the number of wrongs guesses: nWrong
+  // Between the image and paragraph
+
+  //TODO: Update the Snowman Buttons to show/ not show
+  //TODO: Show the You lose message on maxWrong attempts
+
   return (
       <div className="Snowman">
         <img src={(images)[nWrong]} alt={nWrong} />
+        <p>Number wrong {nWrong}</p>
         <p className="Snowman-word">{guessedWord()}</p>
-        <p>{generateButtons()}</p>
+        <p
+        className="button-area">
+           {
+          nWrong < maxWrong ? generateButtons(): "You Loser"
+          }
+        </p>
       </div>
   );
 }
